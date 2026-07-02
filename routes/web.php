@@ -22,6 +22,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/team', function () {
+        return Inertia::render('Team/Index', [
+            'members' => [
+                ['id' => 1, 'name' => 'Alice Johnson'],
+                ['id' => 2, 'name' => 'Bob Smith'],
+                ['id' => 3, 'name' => 'Carla Diaz'],
+            ],
+        ]);
+    })->name('team.index');
 });
 
 require __DIR__.'/auth.php';
